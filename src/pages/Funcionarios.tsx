@@ -94,7 +94,7 @@ const Funcionarios = () => {
       departamento: "Limpeza",
       status: "ferias",
       telefone: "(11) 99999-3456",
-      email: "ana.costa@condosaas.com",
+      email: "ana.costa@administre.com",
       dataAdmissao: "2022-06-18",
       salario: "R$ 1.600,00",
       avatar: "/api/placeholder/40/40",
