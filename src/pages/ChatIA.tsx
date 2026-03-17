@@ -82,7 +82,7 @@ const getAutoResponse = (message: string): { text: string; suggestions?: string[
   
   if (msg.includes("olá") || msg.includes("oi") || msg.includes("bom dia") || msg.includes("boa tarde") || msg.includes("boa noite")) {
     return {
-      text: "👋 Olá! Sou a assistente virtual do CondoSaas!\n\nEstou aqui para ajudar com informações sobre:\n• Reservas de espaços\n• Solicitações de manutenção\n• Consulta de boletos\n• Regulamento do condomínio\n• Assembleias e reuniões\n• Contatos importantes\n\nEm que posso ajudar você hoje?",
+      text: "👋 Olá! Sou a assistente virtual do Administre!\n\nEstou aqui para ajudar com informações sobre:\n• Reservas de espaços\n• Solicitações de manutenção\n• Consulta de boletos\n• Regulamento do condomínio\n• Assembleias e reuniões\n• Contatos importantes\n\nEm que posso ajudar você hoje?",
       suggestions: ["Reservar espaço", "Solicitar manutenção", "Consultar boletos"]
     };
   }
