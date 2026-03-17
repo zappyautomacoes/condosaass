@@ -40,7 +40,7 @@ const Funcionarios = () => {
       departamento: "Manutenção",
       status: "ativo",
       telefone: "(11) 99999-1234",
-      email: "joao.silva@condosaas.com",
+      email: "joao.silva@administre.com",
       dataAdmissao: "2020-03-15",
       salario: "R$ 2.800,00",
       avatar: "/api/placeholder/40/40",
