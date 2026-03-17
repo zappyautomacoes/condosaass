@@ -97,7 +97,7 @@ const ChatIA = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: 1,
-      text: "👋 Olá! Sou a assistente virtual do CondoSaas. Como posso ajudar você hoje?",
+      text: "👋 Olá! Sou a assistente virtual do Administre. Como posso ajudar você hoje?",
       sender: "bot",
       timestamp: new Date(),
       suggestions: ["Reservar espaço", "Solicitar manutenção", "Consultar boletos"]
