@@ -259,7 +259,7 @@ export const Sidebar = () => {
             <Building2 className="w-6 h-6 text-primary-foreground" />
           </div>
           <div>
-            <h2 className="font-bold text-lg text-foreground">SaasCondo</h2>
+            <h2 className="font-bold text-lg text-foreground">Administre</h2>
             <p className="text-xs text-muted-foreground">Gestão Inteligente</p>
           </div>
         </div>
