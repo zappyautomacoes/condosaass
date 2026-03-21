@@ -2,10 +2,11 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { ThemeProvider } from "next-themes";
 import { DataProvider } from "@/contexts/DataContext";
 import { Layout } from "./components/layout/Layout";
+import { SuperAdminLayout } from "./components/super-admin/SuperAdminLayout";
 import Dashboard from "./pages/Dashboard";
 
 // Gestão Geral
@@ -47,6 +48,15 @@ import Alertas from "./pages/Alertas";
 import Relatorios from "./pages/Relatorios";
 import Configuracoes from "./pages/Configuracoes";
 
+// Super Admin
+import SuperAdminDashboard from "./pages/super-admin/SuperAdminDashboard";
+import SuperAdminAdministradoras from "./pages/super-admin/SuperAdminAdministradoras";
+import SuperAdminAdminDetalhes from "./pages/super-admin/SuperAdminAdminDetalhes";
+import SuperAdminSindicos from "./pages/super-admin/SuperAdminSindicos";
+import SuperAdminPlanos from "./pages/super-admin/SuperAdminPlanos";
+import SuperAdminFinanceiro from "./pages/super-admin/SuperAdminFinanceiro";
+import SuperAdminConfiguracoes from "./pages/super-admin/SuperAdminConfiguracoes";
+
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -59,53 +69,55 @@ const App = () => (
           <Toaster />
           <Sonner />
           <BrowserRouter>
-            <Layout>
             <Routes>
-              {/* Gestão Geral */}
-              <Route path="/" element={<Dashboard />} />
-              <Route path="/analytics" element={<Analytics />} />
+              {/* Super Admin - Layout próprio */}
+              <Route path="/super-admin" element={<Navigate to="/super-admin/dashboard" replace />} />
+              <Route path="/super-admin/dashboard" element={<SuperAdminLayout><SuperAdminDashboard /></SuperAdminLayout>} />
+              <Route path="/super-admin/administradoras" element={<SuperAdminLayout><SuperAdminAdministradoras /></SuperAdminLayout>} />
+              <Route path="/super-admin/administradoras/:id" element={<SuperAdminLayout><SuperAdminAdminDetalhes /></SuperAdminLayout>} />
+              <Route path="/super-admin/sindicos" element={<SuperAdminLayout><SuperAdminSindicos /></SuperAdminLayout>} />
+              <Route path="/super-admin/planos" element={<SuperAdminLayout><SuperAdminPlanos /></SuperAdminLayout>} />
+              <Route path="/super-admin/financeiro" element={<SuperAdminLayout><SuperAdminFinanceiro /></SuperAdminLayout>} />
+              <Route path="/super-admin/configuracoes" element={<SuperAdminLayout><SuperAdminConfiguracoes /></SuperAdminLayout>} />
+
+              {/* Sistema Principal - Layout existente */}
+              <Route path="/" element={<Layout><Dashboard /></Layout>} />
+              <Route path="/analytics" element={<Layout><Analytics /></Layout>} />
               
-              {/* Gestão do Síndico */}
-              <Route path="/tarefas-diarias" element={<TarefasDiarias />} />
-              <Route path="/manutencoes" element={<Manutencoes />} />
-              <Route path="/agenda-sindico" element={<AgendaSindico />} />
-              <Route path="/funcionarios" element={<Funcionarios />} />
-              <Route path="/equipamentos" element={<Equipamentos />} />
-              <Route path="/seguranca" element={<Seguranca />} />
+              <Route path="/tarefas-diarias" element={<Layout><TarefasDiarias /></Layout>} />
+              <Route path="/manutencoes" element={<Layout><Manutencoes /></Layout>} />
+              <Route path="/agenda-sindico" element={<Layout><AgendaSindico /></Layout>} />
+              <Route path="/funcionarios" element={<Layout><Funcionarios /></Layout>} />
+              <Route path="/equipamentos" element={<Layout><Equipamentos /></Layout>} />
+              <Route path="/seguranca" element={<Layout><Seguranca /></Layout>} />
               
-              {/* Gestão Financeira */}
-              <Route path="/financeiro" element={<Financeiro />} />
-              <Route path="/cobranca" element={<Cobranca />} />
-              <Route path="/inadimplencia" element={<Inadimplencia />} />
-              <Route path="/integracao-bancaria" element={<IntegracaoBancaria />} />
+              <Route path="/financeiro" element={<Layout><Financeiro /></Layout>} />
+              <Route path="/cobranca" element={<Layout><Cobranca /></Layout>} />
+              <Route path="/inadimplencia" element={<Layout><Inadimplencia /></Layout>} />
+              <Route path="/integracao-bancaria" element={<Layout><IntegracaoBancaria /></Layout>} />
               
-              {/* Gestão Operacional */}
-              <Route path="/moradores" element={<Moradores />} />
-              <Route path="/reservas" element={<Reservas />} />
-              <Route path="/assembleias" element={<Assembleias />} />
-              <Route path="/contratos" element={<Contratos />} />
-              <Route path="/fornecedores" element={<Fornecedores />} />
-              <Route path="/documentos" element={<Documentos />} />
-              <Route path="/patrimonio" element={<Patrimonio />} />
-              <Route path="/certificacoes" element={<Certificacoes />} />
+              <Route path="/moradores" element={<Layout><Moradores /></Layout>} />
+              <Route path="/reservas" element={<Layout><Reservas /></Layout>} />
+              <Route path="/assembleias" element={<Layout><Assembleias /></Layout>} />
+              <Route path="/contratos" element={<Layout><Contratos /></Layout>} />
+              <Route path="/fornecedores" element={<Layout><Fornecedores /></Layout>} />
+              <Route path="/documentos" element={<Layout><Documentos /></Layout>} />
+              <Route path="/patrimonio" element={<Layout><Patrimonio /></Layout>} />
+              <Route path="/certificacoes" element={<Layout><Certificacoes /></Layout>} />
               
-              {/* Comunicação */}
-              <Route path="/atendimento" element={<Atendimento />} />
-              <Route path="/whatsapp" element={<WhatsAppConexao />} />
-              <Route path="/comunicados" element={<Comunicados />} />
-              <Route path="/chat" element={<ChatIA />} />
+              <Route path="/atendimento" element={<Layout><Atendimento /></Layout>} />
+              <Route path="/whatsapp" element={<Layout><WhatsAppConexao /></Layout>} />
+              <Route path="/comunicados" element={<Layout><Comunicados /></Layout>} />
+              <Route path="/chat" element={<Layout><ChatIA /></Layout>} />
               
-              {/* Automação */}
-              <Route path="/automacao" element={<Automacao />} />
-              <Route path="/alertas" element={<Alertas />} />
-              <Route path="/relatorios" element={<Relatorios />} />
-              <Route path="/configuracoes" element={<Configuracoes />} />
+              <Route path="/automacao" element={<Layout><Automacao /></Layout>} />
+              <Route path="/alertas" element={<Layout><Alertas /></Layout>} />
+              <Route path="/relatorios" element={<Layout><Relatorios /></Layout>} />
+              <Route path="/configuracoes" element={<Layout><Configuracoes /></Layout>} />
               
-              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
-          </Layout>
-        </BrowserRouter>
+          </BrowserRouter>
         </DataProvider>
       </TooltipProvider>
     </QueryClientProvider>
